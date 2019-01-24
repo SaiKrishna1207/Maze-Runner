@@ -20,7 +20,13 @@ char maze[1800]="###############################################################
 int setup()
 {
 	
-	for(srand(time(NULL)); ! (location > 75 && location < 1627 && maze[location]==' ') ; location = rand()%1702 , srand(time(NULL)));
+	srand(time(NULL));
+	location = rand() % 1702;
+	for(;( ! (location > 75) || !(location < 1627) || !(maze[location]==' ') ) ; )
+	{
+		srand(time(NULL));
+		location = rand() % 1702;
+	}
 	maze[location]='@';
 	printw("%s",maze);
 	refresh();
